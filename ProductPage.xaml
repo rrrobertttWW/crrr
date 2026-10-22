@@ -1,0 +1,74 @@
+﻿<Page x:Class="_4.ProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_4"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="UserTB" FontSize="20" HorizontalAlignment="Center"/>
+        <Grid Name="FilerGrid" Grid.Row="1">
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock Text="Поиск" FontSize="20"/>
+                <TextBox Name="SearchTB" Width="130" Height="30" SelectionChanged="SearchTB_SelectionChanged"></TextBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Фильтрация" FontSize="20"></TextBlock>
+                <ComboBox Name="FiltCB" Width="130" Height="30" SelectionChanged="FiltCB_SelectionChanged">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>Детская обувь</TextBlock>
+                    <TextBlock>Женская обувь</TextBlock>
+                    <TextBlock>Мужская обувь</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right">
+                <TextBlock Text="Сортировка" FontSize="20"/>
+                <ComboBox Name="SortCB" Width="130" Height="30" SelectionChanged="SortCB_SelectionChanged">
+                    <TextBlock>Нет</TextBlock>
+                    <TextBlock>По убыванию</TextBlock>
+                    <TextBlock>По возрастанию</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+        <ListView Name="ProductListView" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="1100"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="140">
+                            <Image.Source>
+                                <Binding Path="PhotoPath">
+                                    <Binding.TargetNullValue>res</Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding ProductName}" FontSize="20"/>
+                            <TextBlock Text="{Binding ProductCost}" FontSize="18" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding ProductDescription}" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding ProductComposition}" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding CategoryFull}" FontSize="16"/>
+                            <TextBlock Text="{Binding SubcategoryFull}" FontSize="16"/>
+                            <TextBlock Text="{Binding MaufacterFull}" FontSize="16"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
